@@ -47,6 +47,15 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
       delete line_item_url(@line_item)
     end
 
-    assert_redirected_to cart_url(session[:cart_id])
+    assert_redirected_to store_index_url
+  end
+
+  test "should create line_item via ajax" do
+    assert_difference('LineItem.count') do
+      post line_items_url, params: { product_id: products(:ruby).id }, xhr: true
+    end
+
+    assert_response :success
+    assert_match /<tr class=\\"line-item-highlight/, @response.body
   end
 end
