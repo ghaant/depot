@@ -6,6 +6,6 @@
   <td class="quantity"><%= line_item.quantity %></td>
   <td><%= line_item.product.title %></td>
   <td class="price"><%= number_to_currency(line_item.price) %></td>
-  <td><%= button_to 'Withdraw', line_item, method: :patch %></td>
+  <td><%= button_to 'Withdraw', line_item, method: :patch, remote: true %></td>
   <td><%= button_to 'Delete item', line_item, method: :delete %></td>
 </tr>
