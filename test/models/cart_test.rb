@@ -27,4 +27,15 @@ class CartTest < ActiveSupport::TestCase
     assert_equal product2.price, cart.line_items.second.price
 
   end
+
+  test 'removing not products from line item' do
+    cart = Cart.new
+    product = products(:ruby)
+    line_item = cart.add_product(product)
+    line_item.save!
+
+    line_item = cart.remove_product(product)
+
+    assert_equal 0, line_item.quantity
+  end
 end
